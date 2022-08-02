@@ -49,7 +49,7 @@ class DnsLibsConan(ConanFile):
         self.run("git clone https://github.com/AdguardTeam/DnsLibs.git source_subfolder")
 
         if self.options.commit_hash:
-            self.run("cd source_subfolder && git checkout %s" % self.options.commit_hash)
+            self.run(f"cd source_subfolder && git checkout {self.options.commit_hash}")
 
     def build(self):
         cmake = CMake(self)
@@ -68,7 +68,13 @@ class DnsLibsConan(ConanFile):
         ]
 
         for m in MODULES:
-            self.copy("*.h", dst="include", src="source_subfolder/%s/include" % m, keep_path=False)
+            self.copy(
+                "*.h",
+                dst="include",
+                src=f"source_subfolder/{m}/include",
+                keep_path=False,
+            )
+
 
         self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)

@@ -19,7 +19,7 @@ DOMAINS_BASE_FILE_NAME = 'bench_domains.txt'
 if not os.path.isfile(FILTER_LIST_FILE_NAME):
     print('Downloading filter list from \'' + FILTER_LIST_URL + '\'...')
     with urllib.request.urlopen(FILTER_LIST_URL, cafile=certifi.where()) as page:
-        with open('./' + FILTER_LIST_FILE_NAME, 'w') as file:
+        with open(f'./{FILTER_LIST_FILE_NAME}', 'w') as file:
             file.write(page.read().decode('utf-8'))
     print('Filter list downloaded')
 
@@ -28,11 +28,11 @@ if not os.path.isfile(DOMAINS_BASE_FILE_NAME):
     if not os.path.isfile(DOMAINS_BASE_URL):
         print('Downloading domains base from \'' + DOMAINS_BASE_URL + '\'...')
         with urllib.request.urlopen(DOMAINS_BASE_URL, cafile=certifi.where()) as content:
-            with open('./' + domains_base_archive, 'wb') as file:
+            with open(f'./{domains_base_archive}', 'wb') as file:
                 file.write(content.read())
         print('Domains base downloaded')
 
-    with zipfile.ZipFile('./' + domains_base_archive, 'r') as zip_ref:
+    with zipfile.ZipFile(f'./{domains_base_archive}', 'r') as zip_ref:
         print('Unpacking domains base \'' + domains_base_archive + '\'...')
         zip_ref.extractall('./')
         print('Domains base extracted')

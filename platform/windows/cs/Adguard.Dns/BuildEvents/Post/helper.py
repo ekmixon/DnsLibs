@@ -6,7 +6,10 @@ import shutil
 def print_usage():
     """ Prints the usage of script, which uses 'get_args()' method """
     print("you must specify SolutionDir, ProjectDir, TargetDir, ConfigurationName")
-    print(f"python %script%.py --solution_dir=XXX --project_dir=XXX --target_dir=XXX --configuration_name=XXX")
+    print(
+        "python %script%.py --solution_dir=XXX --project_dir=XXX --target_dir=XXX --configuration_name=XXX"
+    )
+
     print(f"current args: {str(sys.argv)}")
 
 def get_args():
